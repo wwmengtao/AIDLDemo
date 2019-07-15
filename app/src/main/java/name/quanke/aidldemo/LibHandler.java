@@ -18,9 +18,10 @@ public class LibHandler extends IHandler.Stub{
     }
 
     @Override
-    public void sendMessage(Message message) throws RemoteException {
+    public void sendMessage(name.quanke.aidldemo.model.Message message) throws RemoteException {
 
     }
+
 
     @Override
     public IBinder asBinder() {

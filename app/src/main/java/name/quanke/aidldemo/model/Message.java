@@ -1,5 +1,6 @@
 package name.quanke.aidldemo.model;
 
+import android.bluetooth.BluetoothDevice;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -10,6 +11,7 @@ import android.os.Parcelable;
 public class Message implements Parcelable {
     private long id;
     private String content;
+    private BluetoothDevice mDevice;
 
 
     public long getId() {
@@ -28,6 +30,15 @@ public class Message implements Parcelable {
         this.content = content;
     }
 
+    public BluetoothDevice getDevice() {
+        return mDevice;
+    }
+
+    public void setDevice(BluetoothDevice mDevice) {
+        this.mDevice = mDevice;
+    }
+
+
     @Override
     public String toString() {
         return "Message{" +
@@ -45,6 +56,7 @@ public class Message implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeLong(this.id);
         dest.writeString(this.content);
+        dest.writeParcelable(this.mDevice, flags);
     }
 
     public Message() {
@@ -53,6 +65,7 @@ public class Message implements Parcelable {
     protected Message(Parcel in) {
         this.id = in.readLong();
         this.content = in.readString();
+        this.mDevice = in.readParcelable(BluetoothDevice.class.getClassLoader());
     }
 
     public static final Creator<Message> CREATOR = new Creator<Message>() {
